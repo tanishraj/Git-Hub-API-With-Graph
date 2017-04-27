@@ -1,0 +1,112 @@
+.form-horizontal {
+  width:100%;
+  margin: 20px 0 20px;
+}
+
+.form-horizontal {
+    max-width: 400px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.form-horizontal .form-heading {
+    background: #158cba;
+    padding: 10px 15px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.form-horizontal .form-heading h2 {
+    color: #fff;
+    margin: 0;
+}
+
+.form-horizontal .form-group {
+    max-width: 100%;
+    margin: auto;
+    margin: 15px;
+}
+
+
+.form-horizontal .btn {
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.smallname{
+    display: block;
+    font-size: 13px;
+}
+
+.loaded{
+    border: 1px solid #ddd;
+}
+
+h3.ng-binding{
+    margin: 0 0 5px;
+}
+
+.center {
+  display: table;
+  margin: 40px auto;
+}
+
+.repos{
+    margin-bottom: 20px;
+}
+
+.repolist{
+	clear: left;
+	margin-top: 10px;
+}
+
+.repoList{
+	max-height: 300px;
+	overflow: auto;
+	overflow-x: hidden;
+	border: 1px solid #ddd;
+	padding: 7px 0;
+    margin-bottom: 20px;
+}
+
+.ghcontent .avi{
+	float: left;
+	padding-right: 10px;
+}
+
+.scroll::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}
+
+.panel-body{
+	max-height: 359px;
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.repoList ul{
+	margin-bottom: 0;
+}
+
+#pieChartArea{
+    width: 87% !importants;
+}

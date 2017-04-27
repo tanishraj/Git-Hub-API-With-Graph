@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body ng-controller="gitHubCtrl">
+	<div class="container">
+		<form class="form-horizontal clearfix" name="myForm" novalidate>
+			<div class="form-heading">
+				<h2>Git Hub API Example</h2>
+			</div>
+			<div class="form-group" ng-class="{'has-error': myForm.userName.$invalid && myForm.userName.$dirty, 'has-success': myForm.userName.$valid }">
+				<input type="text" class="form-control" placeholder="Enter User Name" name="userName" ng-model="userName" required/>
+				<p class="help-block small" ng-if="myForm.userName.$invalid && myForm.userName.$dirty">* Required field.</p>
+			</div>
+			<button class="btn btn-primary pull-right" ng-click="getGitInfo()" ng-disabled="myForm.userName.$invalid">Pull User Details</button>
+		</form>
+	</div>
+
+	<div class="container repos">
+		<div class="row">
+			<div class="col-sm-4 col-xs-12">
+				<div ng-show="userNotfound">
+					<h4 class="text-danger">No user info found.</h4>
+				</div>
+
+				<div ng-show="loaded">
+					<div class="ghcontent">
+						<div class="avi">
+							<a href="{{ user.html_url }}" target="_blank">
+								<img src="{{ user.avatar_url }}" width="105" alt="{{ user.login }}">
+							</a>
+						</div>
+						<div class="ghDetails">
+							<h3>
+								{{user.name}}
+								<span class="smallname">( @ <a href="{{user.html_url}}" target="_blank">{{user.login}}</a> )</span>
+							</h3>
+							Followers: {{ user.followers }} <br/> Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
+						</div>
+					</div>
+
+					<div class="repolist clearfix">
+						<p ng-hide="reposFound">No repos!</p>
+
+						<div ng-show="reposFound">
+							<p><strong>Repos List:</strong></p>
+							<div class="repoList scroll">
+								<ul ng-repeat="repo in repos">
+									<li><a href="" ng-click="getCommitInfo(repo)"> {{repo.name}} </a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div id="pieChartArea" ng-show="loaded"></div>
+				</div>
+			</div>
+
+			<div class="col-sm-6 col-xs-12">
+				<div ng-show="repoNotfound">
+					<h4 class="text-danger">No repo info found.</h4>
+				</div>
+
+				<div ng-show="loadedCommit">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Repo ID: {{repoId}}</div>
+						<div class="panel-body scroll">
+							<ul>
+								<li ng-repeat="commit in commits">
+									{{commit.commit.message}}
+								</li>
+							</ul>
+						</div>
+						<div class="panel-footer">Total Commits: {{commits.length}}</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
